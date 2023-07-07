@@ -11,7 +11,9 @@ function useRect()
   ) {
     if(radius == 0 || radius == null)
     {
+      ctx.beginPath();
       ctx.rect(x,y,w,h)
+      ctx.closePath();
       return
     }else if (typeof radius === 'number') {
       radius = {tl: radius, tr: radius, br: radius, bl: radius};

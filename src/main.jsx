@@ -36,7 +36,6 @@ const square = surface.add({
     border: {
         thickness: 1,
         color: "black",
-        radius: 10,
     },
     x: centerX-120,
     y: centerY,
@@ -61,7 +60,6 @@ document.addEventListener("mousemove",e=>{
     {
         square.backgroundColor = "#ffc"
     }
-    
 })
 
 // const canvas2 = Surface({w:800,h:600})
