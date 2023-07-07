@@ -1,5 +1,7 @@
-export { RoundRect }
-function RoundRect(
+export { useRect }
+function useRect()
+{
+  function draw(
     ctx,
     {x,
     y,
@@ -28,3 +30,8 @@ function RoundRect(
     ctx.quadraticCurveTo(x, y, x + radius.tl, y);
     ctx.closePath();
   }
+  function pointOnShape({px, py,x,y,w,h}){
+    return px >= x && px <= x + w && py >= y && py <= y + h
+  }
+  return {draw, pointOnShape}
+}

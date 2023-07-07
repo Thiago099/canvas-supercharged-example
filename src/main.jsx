@@ -16,29 +16,56 @@ canvas.canvas.$parent(document.body)
 var centerX = 800 / 2;
 var centerY = 600 / 2;
 
-canvas.drawRect({
-    backgroundColor: "#cff",
+const square = {
+    shape: "rect",
+    backgroundColor: "#ffc",
     border: {
         thickness: 1,
-        color: "#ccc",
+        color: "black",
         radius: 10,
     },
     x: centerX-120,
     y: centerY,
     w: 100,
     h: 100,
-})
+}
 
-canvas.drawEllipse({
+const circle = {
+    shape: "ellipse",
     backgroundColor: "#ffc",
     border: {
         thickness: 1,
-        color: "#ccc"
+        color: "black"
     },
     x: centerX,
     y: centerY,
     w: 100,
     h: 100,
+}
+
+const element = canvas.add(circle)
+const element2 = canvas.add(square)
+
+
+document.addEventListener("mousemove",e=>{
+    if(element.pointOnShape({x:e.offsetX,y:e.offsetY}))
+    {
+        circle.backgroundColor = "#cff"
+    }
+    else
+    {
+        circle.backgroundColor = "#ffc"
+    }
+    if(element2.pointOnShape({x:e.offsetX,y:e.offsetY}))
+    {
+        square.backgroundColor = "#cff"
+    }
+    else
+    {
+        square.backgroundColor = "#ffc"
+    }
+    canvas.update()
+    
 })
 
 // const canvas2 = Surface({w:800,h:600})

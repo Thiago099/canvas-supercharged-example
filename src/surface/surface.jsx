@@ -1,7 +1,11 @@
-import { Ellipse } from "./shapes/ellipse"
-import { RoundRect } from "./shapes/round-rect"
+import { UseEllipse } from "./shapes/ellipse"
+import { useRect } from "./shapes/round-rect"
 export { Surface }
 
+const shapeDict = {
+    rect: useRect(),
+    ellipse: UseEllipse()
+}
 
 function Surface({w,h})
 {
@@ -9,25 +13,60 @@ function Surface({w,h})
     canvas.width = w
     canvas.height = h
     const ctx = canvas.getContext("2d");
-    function drawEllipse(data)
+
+    const children = []
+
+    function add(data)
     {
-        _shape(ctx, data, Ellipse)
+        if(data.surface)
+        {
+            return addSurface(children, ctx, data)
+        }
+        return addShape(children, ctx, data)
     }
 
-    function drawRect(data)
+    function update()
     {
-        _shape(ctx, data, RoundRect)
+        ctx.clearRect(0,0,w,h)
+        for(const shape of children)
+        {
+            shape()
+        }
     }
 
-    function drawSurface(data)
+    return {canvas, ctx, add, update}
+}
+function addSurface(children,ctx,data)
+{
+    function draw()
     {
-        _image(ctx, data)
+        drawImage(ctx, data)
     }
-
-    return {canvas, ctx, drawEllipse, drawRect, drawSurface}
+    draw()
+    children.push(draw)
 }
 
-function _image(ctx, {surface,x=0,y=0,w,h})
+function addShape(children,ctx,data)
+{
+    const shape = shapeDict[data.shape]
+    function draw()
+    {
+        drawShape(ctx, data, shape.draw)
+    }
+    draw()
+
+    children.push(draw)
+
+    function pointOnShape({x,y})
+    {
+        return shape.pointOnShape({px:x,py:y,...data})
+    }
+
+    return { pointOnShape }
+
+}
+
+function drawImage(ctx, {surface,x=0,y=0,w,h})
 {
     if(w != null && h != null)
     {
@@ -38,7 +77,8 @@ function _image(ctx, {surface,x=0,y=0,w,h})
         ctx.drawImage(surface.canvas,x,y);
     }
 }
-function _shape(ctx, data, callback)
+
+function drawShape(ctx, data, callback)
 {
     let fill = false;
     let stroke = false;
