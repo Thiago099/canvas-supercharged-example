@@ -33,7 +33,6 @@ function Surface({w,h})
         {
             shape()
         }
-        console.log("hi")
     }
 
     return {canvas, ctx, add, update}
