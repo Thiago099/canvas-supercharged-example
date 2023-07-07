@@ -10,6 +10,8 @@ import { Surface } from "./surface/surface"
 
 
 const surface = Surface({w:800,h:600})
+
+
 document.body.appendChild(surface.canvas)
 
 
@@ -18,7 +20,7 @@ var centerY = 600 / 2;
 
 
 const circle = surface.add({
-    shape: "ellipse",
+    type: "ellipse",
     backgroundColor: "#ffc",
     border: {
         thickness: 1,
@@ -31,11 +33,12 @@ const circle = surface.add({
 })
 
 const square = surface.add({
-    shape: "rect",
+    type: "rect",
     backgroundColor: "#ffc",
     border: {
         thickness: 1,
         color: "black",
+        radius:10,
     },
     x: centerX-120,
     y: centerY,

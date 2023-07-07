@@ -49,7 +49,7 @@ function addSurface(children,ctx,data)
 
 function addShape(children,ctx,data, update)
 {
-    const shape = shapeDict[data.shape]
+    const shape = shapeDict[data.type]
     function draw()
     {
         drawShape(ctx, data, shape.draw)
