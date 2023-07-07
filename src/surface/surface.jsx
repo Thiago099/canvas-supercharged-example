@@ -52,10 +52,13 @@ function _shape(ctx, data, callback)
     }
     if(border != null)
     {
-        stroke = true
         const {thickness, color} = border
-        ctx.lineWidth = thickness;
-        ctx.strokeStyle = color;
+        if(thickness != null && color != null)
+        {
+            stroke = true
+            ctx.lineWidth = thickness;
+            ctx.strokeStyle = color;
+        }
     }
 
     callback(ctx, data)

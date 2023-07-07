@@ -17,7 +17,7 @@ var centerX = 800 / 2;
 var centerY = 600 / 2;
 
 canvas.drawRect({
-    backgroundColor: "#fcc",
+    backgroundColor: "#cff",
     border: {
         thickness: 1,
         color: "#ccc",
@@ -30,7 +30,7 @@ canvas.drawRect({
 })
 
 canvas.drawEllipse({
-    backgroundColor: "#cfc",
+    backgroundColor: "#ffc",
     border: {
         thickness: 1,
         color: "#ccc"
