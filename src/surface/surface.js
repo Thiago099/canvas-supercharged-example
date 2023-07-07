@@ -1,5 +1,6 @@
 import { UseEllipse } from "./shapes/ellipse"
 import { useRect } from "./shapes/round-rect"
+import { Reactive } from "./lib/reactive"
 export { Surface }
 
 const shapeDict = {
@@ -9,7 +10,7 @@ const shapeDict = {
 
 function Surface({w,h})
 {
-    const canvas = <canvas></canvas> 
+    const canvas = document.createElement("canvas")
     canvas.width = w
     canvas.height = h
     const ctx = canvas.getContext("2d");
@@ -22,7 +23,7 @@ function Surface({w,h})
         {
             return addSurface(children, ctx, data)
         }
-        return addShape(children, ctx, data)
+        return addShape(children, ctx, data, update)
     }
 
     function update()
@@ -32,6 +33,7 @@ function Surface({w,h})
         {
             shape()
         }
+        console.log("hi")
     }
 
     return {canvas, ctx, add, update}
@@ -46,7 +48,7 @@ function addSurface(children,ctx,data)
     children.push(draw)
 }
 
-function addShape(children,ctx,data)
+function addShape(children,ctx,data, update)
 {
     const shape = shapeDict[data.shape]
     function draw()
@@ -61,8 +63,9 @@ function addShape(children,ctx,data)
     {
         return shape.pointOnShape({px:x,py:y,...data})
     }
+    data.pointOnShape = pointOnShape
 
-    return { pointOnShape }
+    return Reactive(update,data)
 
 }
 

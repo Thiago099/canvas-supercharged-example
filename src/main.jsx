@@ -9,14 +9,28 @@ import { Surface } from "./surface/surface"
 // Get the 2D rendering context
 
 
-const canvas = Surface({w:800,h:600})
-canvas.canvas.$parent(document.body)
+const surface = Surface({w:800,h:600})
+document.body.appendChild(surface.canvas)
 
 
 var centerX = 800 / 2;
 var centerY = 600 / 2;
 
-const square = {
+
+const circle = surface.add({
+    shape: "ellipse",
+    backgroundColor: "#ffc",
+    border: {
+        thickness: 1,
+        color: "black"
+    },
+    x: centerX,
+    y: centerY,
+    w: 100,
+    h: 100,
+})
+
+const square = surface.add({
     shape: "rect",
     backgroundColor: "#ffc",
     border: {
@@ -28,27 +42,10 @@ const square = {
     y: centerY,
     w: 100,
     h: 100,
-}
-
-const circle = {
-    shape: "ellipse",
-    backgroundColor: "#ffc",
-    border: {
-        thickness: 1,
-        color: "black"
-    },
-    x: centerX,
-    y: centerY,
-    w: 100,
-    h: 100,
-}
-
-const element = canvas.add(circle)
-const element2 = canvas.add(square)
-
+})
 
 document.addEventListener("mousemove",e=>{
-    if(element.pointOnShape({x:e.offsetX,y:e.offsetY}))
+    if(circle.pointOnShape({x:e.offsetX,y:e.offsetY}))
     {
         circle.backgroundColor = "#cff"
     }
@@ -56,7 +53,7 @@ document.addEventListener("mousemove",e=>{
     {
         circle.backgroundColor = "#ffc"
     }
-    if(element2.pointOnShape({x:e.offsetX,y:e.offsetY}))
+    if(square.pointOnShape({x:e.offsetX,y:e.offsetY}))
     {
         square.backgroundColor = "#cff"
     }
@@ -64,7 +61,6 @@ document.addEventListener("mousemove",e=>{
     {
         square.backgroundColor = "#ffc"
     }
-    canvas.update()
     
 })
 
