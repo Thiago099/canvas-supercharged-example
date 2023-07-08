@@ -1,25 +1,12 @@
 import "./style.css"
-import { Surface } from "./surface/surface"
-
-
-
-
-
-
-// Get the 2D rendering context
-
+import { Surface } from "canvas-supercharged"
 
 const surface = Surface({w:800,h:600})
-
-
-// document.body.appendChild(surface.canvas)
-
 
 var centerX = 800 / 2;
 var centerY = 600 / 2;
 
 surface.beguinTransaction()
-
 
 const circle = surface.add({
     type: "ellipse",
@@ -127,8 +114,6 @@ const curve = surface.add({
     ],
     w:10
 })
-
-
 
 
 const circleHelper = useHelper(circle)

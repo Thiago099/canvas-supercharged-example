@@ -7,8 +7,7 @@ export default defineConfig({
     plugins:[
         MagicDomVitePlugin(),
     ],
-    //base: '/jsx-dom-builder-form-example/', 
-    // make the @ as a alias to the src folder (opitional but recomended)
+    base: '/canvas-supercharged-example/', 
     resolve: {
         alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
