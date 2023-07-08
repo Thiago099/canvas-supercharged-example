@@ -148,7 +148,7 @@ surface2.add({
 })
 surface2.canvas.$parent(document.body)
 
-document.addEventListener("mousemove",e=>{
+surface2.canvas.addEventListener("mousemove",e=>{
 
     surface.beguinTransaction()
 
