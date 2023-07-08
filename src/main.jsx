@@ -70,7 +70,6 @@ const shape = surface.add({
             y: 50,
         }
     ],
-    w:10
 })
 
 const line = surface.add({
@@ -162,11 +161,7 @@ function useHelper(element)
 {
     const helper = surface.add({
         type: "ellipse",
-        backgroundColor: "#f00",
-        border: {
-            thickness: 1,
-            color: "#ccc"
-        },
+
         x: centerX,
         y: centerY,
         w: 10,
@@ -177,9 +172,16 @@ function useHelper(element)
     })
     return function(e)
     {
+        surface.beguinTransaction()
+        helper.backgroundColor = "#f00"
+        helper.border = {
+            thickness: 1,
+            color: "#ccc"
+        }
         const {x,y} = element.getClosestPoint({x:e.offsetX,y:e.offsetY})
         helper.x = x
         helper.y = y
+        surface.endTransaction()
     }
 }
 
