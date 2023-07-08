@@ -51,13 +51,18 @@ function addShape(children,ctx,data, update,offset)
 
     children.push({draw:entity.draw, layer:data.layer})
 
-    function pointOnShape({x,y})
+    function getProps({x,y})
     {
-        return entity.shape.pointOnShape({px:(x-offset.x)*offset.w,py:(y-offset.y)*offset.h,...data})
+        return {px:(x-offset.x)*offset.w,py:(y-offset.y)*offset.h,...data}
     }
-    function getClosestPoint({x,y})
+
+    function pointOnShape(props)
     {
-        return entity.shape.getClosestPoint({px:(x-offset.x)*offset.w,py:(y-offset.y)*offset.h,...data})
+        return entity.shape.pointOnShape(getProps(props))
+    }
+    function getClosestPoint(props)
+    {
+        return entity.shape.getClosestPoint(getProps(props))
     }
     data.pointOnShape = pointOnShape
     data.getClosestPoint = getClosestPoint
