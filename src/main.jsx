@@ -26,7 +26,7 @@ const circle = surface.add({
     backgroundColor: "#ffc",
     border: {
         thickness: 1,
-        color: "black"
+        color: "#ccc"
     },
     x: centerX,
     y: centerY,
@@ -41,7 +41,7 @@ const square = surface.add({
     backgroundColor: "#ffc",
     border: {
         thickness: 1,
-        color: "black",
+        color: "#ccc",
         radius:10,
     },
     x: centerX-120,
@@ -50,12 +50,42 @@ const square = surface.add({
     h: 100,
 })
 
+const shape = surface.add({
+    type: "shape",
+    backgroundColor: "#ffc",
+    border: {
+        thickness: 1,
+        color: "#ccc",
+    },
+    segments:[
+        {
+            x: 300,
+            y: 20,
+        },
+        {
+            x: 400,
+            y: 100,
+        },
+        {
+            x: 500,
+            y: 20,
+        }
+        ,
+        {
+            x: 400,
+            y: 50,
+        }
+    ],
+    w:10
+})
+
+
 const line = surface.add({
     type: "line",
     backgroundColor: "#ffc",
     border: {
         thickness: 1,
-        color: "black",
+        color: "#ccc",
     },
     segments:[
         {
@@ -79,26 +109,20 @@ const curve = surface.add({
     backgroundColor: "#ffc",
     border: {
         thickness: 1,
-        color: "black",
+        color: "#ccc",
     },
     segments:[
         {
-            px: 20,
-            py: 20,
+            x: 20,
+            y: 20,
             hx: 100,
             hy: 20,
         },
         {
-            px: 100,
-            py: 100,
+            x: 100,
+            y: 100,
             hx: 100,
             hy: 100,
-        },
-        {
-            px: 200,
-            py: 200,
-            hx: 100,
-            hy: 200,
         }
     ],
     w:10
@@ -111,6 +135,7 @@ const circleHelper = useHelper(circle)
 const squareHelper = useHelper(square)
 const lineHelper = useHelper(line)
 const curveHelper = useHelper(curve)
+const shapeHelper = useHelper(shape)
 
 surface.endTransaction()
 
@@ -127,43 +152,17 @@ document.addEventListener("mousemove",e=>{
 
     surface.beguinTransaction()
 
-    if(circle.pointOnShape({x:e.offsetX,y:e.offsetY}))
-    {
-        circle.backgroundColor = "#cff"
-    }
-    else
-    {
-        circle.backgroundColor = "#ffc"
-    }
-    if(square.pointOnShape({x:e.offsetX,y:e.offsetY}))
-    {
-        square.backgroundColor = "#cff"
-    }
-    else
-    {
-        square.backgroundColor = "#ffc"
-    }
-    if(line.pointOnShape({x:e.offsetX,y:e.offsetY}))
-    {
-        line.backgroundColor = "#cff"
-    }
-    else
-    {
-        line.backgroundColor = "#ffc"
-    }
-    if(curve.pointOnShape({x:e.offsetX,y:e.offsetY}))
-    {
-        curve.backgroundColor = "#cff"
-    }
-    else
-    {
-        curve.backgroundColor = "#ffc"
-    }
+    hoverColor(e,square)
+    hoverColor(e,line)
+    hoverColor(e,curve)
+    hoverColor(e,shape)
+    hoverColor(e,circle)
 
     circleHelper(e)
     squareHelper(e)
     lineHelper(e)
     curveHelper(e)
+    shapeHelper(e)
 
     surface.endTransaction()
 })
@@ -175,7 +174,7 @@ function useHelper(element)
         backgroundColor: "#f00",
         border: {
             thickness: 1,
-            color: "black"
+            color: "#ccc"
         },
         x: centerX,
         y: centerY,
@@ -194,3 +193,14 @@ function useHelper(element)
 }
 
 
+function hoverColor(e, shape)
+{
+    if(shape.pointOnShape({x:e.offsetX,y:e.offsetY}))
+    {
+        shape.backgroundColor = "#cff"
+    }
+    else
+    {
+        shape.backgroundColor = "#ffc"
+    }
+}

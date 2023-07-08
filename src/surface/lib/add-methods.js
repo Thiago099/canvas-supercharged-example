@@ -4,13 +4,15 @@ import { UseEllipse } from "../shapes/ellipse"
 import { useRect } from "../shapes/round-rect"
 import { useLine } from "../shapes/line"
 import { useCurve } from "../shapes/curve"
+import { useShape } from "../shapes/shape"
 
 export { addShape, addSurface }
 
 
 const shapeDict = {
     rect: useRect(),
-    ellipse: UseEllipse()
+    ellipse: UseEllipse(),
+    shape: useShape()
 }
 const lineDict = {
     line: useLine(),
