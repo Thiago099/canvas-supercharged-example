@@ -21,8 +21,11 @@ const lineDict = {
 function addSurface(children, parents,ctx,data, {properties:{w, h},update})
 {
     const { surface:child, w:cw, h:ch, x, y } = data
-    child.properties.offset.w = w / cw
-    child.properties.offset.h = h / ch
+    if(cw != null && ch != null)
+    {
+        child.properties.offset.w = w / cw
+        child.properties.offset.h = h / ch
+    }
     child.properties.offset.x = x
     child.properties.offset.y = y
     child.properties.parents.push(update)

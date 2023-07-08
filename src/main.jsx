@@ -121,7 +121,5 @@ surface2.add({
     surface,
     x:100,
     y:100,
-    w:800,
-    h:300
 })
 document.body.appendChild(surface2.canvas)
