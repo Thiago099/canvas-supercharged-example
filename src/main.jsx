@@ -12,7 +12,7 @@ import { Surface } from "./surface/surface"
 const surface = Surface({w:800,h:600})
 
 
-document.body.appendChild(surface.canvas)
+// document.body.appendChild(surface.canvas)
 
 
 var centerX = 800 / 2;
@@ -46,6 +46,38 @@ const square = surface.add({
     h: 100,
 })
 
+const line = surface.add({
+    type: "line",
+    backgroundColor: "#ffc",
+    border: {
+        thickness: 1,
+        color: "black",
+    },
+    x1: 100,
+    y1: 100,
+    x2: 200,
+    y2: 200,
+    w:30
+})
+
+const curve = surface.add({
+    type: "curve",
+    backgroundColor: "#ffc",
+    border: {
+        thickness: 1,
+        color: "black",
+    },
+    x1: 20,
+    y1: 20,
+    x2: 20,
+    y2: 100,
+    x3: 200,
+    y3: 100,
+    x4: 200,
+    y4: 20,
+    w:10
+})
+
 document.addEventListener("mousemove",e=>{
     if(circle.pointOnShape({x:e.offsetX,y:e.offsetY}))
     {
@@ -63,13 +95,33 @@ document.addEventListener("mousemove",e=>{
     {
         square.backgroundColor = "#ffc"
     }
+    if(line.pointOnShape({x:e.offsetX,y:e.offsetY}))
+    {
+        line.backgroundColor = "#cff"
+    }
+    else
+    {
+        line.backgroundColor = "#ffc"
+    }
+    if(curve.pointOnShape({x:e.offsetX,y:e.offsetY}))
+    {
+        curve.backgroundColor = "#cff"
+    }
+    else
+    {
+        curve.backgroundColor = "#ffc"
+    }
+    // line.x2 = e.offsetX
+    // line.y2 = e.offsetY
 })
 
-// const canvas2 = Surface({w:800,h:600})
+const surface2 = Surface({w:800,h:600})
 
-// canvas2.drawSurface({
-//     surface:canvas,
-//     x:0,
-//     y:0,
-// })
-// canvas2.canvas.$parent(document.body)
+surface2.add({
+    surface,
+    x:0,
+    y:0,
+    w:800,
+    h:600
+})
+document.body.appendChild(surface2.canvas)

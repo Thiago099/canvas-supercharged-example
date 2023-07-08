@@ -12,6 +12,7 @@
     "vite": "^4.0.0"
   },
   "dependencies": {
+    "closest-point-on-bezier": "^1.0.12",
     "magic-dom": "^3.0.22"
   }
 }

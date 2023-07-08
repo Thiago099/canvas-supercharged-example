@@ -8,7 +8,6 @@ function UseEllipse()
     
         ctx.beginPath();
         ctx.ellipse(x+w, y+h, w, h, 0, 0, 2 * Math.PI);
-        ctx.closePath();
     }
 
     function pointOnShape({px, py,x,y,w,h}) {

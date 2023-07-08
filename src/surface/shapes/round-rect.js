@@ -13,7 +13,6 @@ function useRect()
     {
       ctx.beginPath();
       ctx.rect(x,y,w,h)
-      ctx.closePath();
       return
     }else if (typeof radius === 'number') {
       radius = {tl: radius, tr: radius, br: radius, bl: radius};
@@ -30,7 +29,6 @@ function useRect()
     ctx.quadraticCurveTo(x, y + h, x, y + h - radius.bl);
     ctx.lineTo(x, y + radius.tl);
     ctx.quadraticCurveTo(x, y, x + radius.tl, y);
-    ctx.closePath();
   }
   function pointOnShape({px, py,x,y,w,h}){
     return px >= x && px <= x + w && py >= y && py <= y + h
