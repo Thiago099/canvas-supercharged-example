@@ -32,21 +32,7 @@ const circle = surface.add({
     h: 100,
 })
 
-const helper = surface.add({
-    type: "ellipse",
-    backgroundColor: "#f00",
-    border: {
-        thickness: 1,
-        color: "black"
-    },
-    x: centerX,
-    y: centerY,
-    w: 10,
-    h: 10,
-    cx:5,
-    cy:5,
-    layer:1
-})
+
 
 const square = surface.add({
     type: "rect",
@@ -94,6 +80,11 @@ const curve = surface.add({
     w:10
 })
 
+const circleHelper = useHelper(circle)
+const squareHelper = useHelper(square)
+const lineHelper = useHelper(line)
+const curveHelper = useHelper(curve)
+
 document.addEventListener("mousemove",e=>{
     if(circle.pointOnShape({x:e.offsetX,y:e.offsetY}))
     {
@@ -128,12 +119,40 @@ document.addEventListener("mousemove",e=>{
         curve.backgroundColor = "#ffc"
     }
 
-    const {x,y} = square.getClosestPoint({x:e.offsetX,y:e.offsetY})
-    helper.x = x
-    helper.y = y
+    circleHelper(e)
+    squareHelper(e)
+    lineHelper(e)
+    curveHelper(e)
+
+
     // line.x2 = e.offsetX
     // line.y2 = e.offsetY
 })
+
+function useHelper(element)
+{
+    const helper = surface.add({
+        type: "ellipse",
+        backgroundColor: "#f00",
+        border: {
+            thickness: 1,
+            color: "black"
+        },
+        x: centerX,
+        y: centerY,
+        w: 10,
+        h: 10,
+        cx:5,
+        cy:5,
+        layer:1
+    })
+    return function(e)
+    {
+        const {x,y} = element.getClosestPoint({x:e.offsetX,y:e.offsetY})
+        helper.x = x
+        helper.y = y
+    }
+}
 
 const surface2 = Surface({w:800,h:600})
 
