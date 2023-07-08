@@ -18,6 +18,8 @@ const surface = Surface({w:800,h:600})
 var centerX = 800 / 2;
 var centerY = 600 / 2;
 
+surface.beguinTransaction()
+
 
 const circle = surface.add({
     type: "ellipse",
@@ -80,12 +82,17 @@ const curve = surface.add({
     w:10
 })
 
+
 const circleHelper = useHelper(circle)
 const squareHelper = useHelper(square)
 const lineHelper = useHelper(line)
 const curveHelper = useHelper(curve)
 
+surface.endTransaction()
+
 document.addEventListener("mousemove",e=>{
+
+    surface.beguinTransaction()
     if(circle.pointOnShape({x:e.offsetX,y:e.offsetY}))
     {
         circle.backgroundColor = "#cff"
@@ -123,6 +130,8 @@ document.addEventListener("mousemove",e=>{
     squareHelper(e)
     lineHelper(e)
     curveHelper(e)
+
+    surface.endTransaction()
 
 
     // line.x2 = e.offsetX

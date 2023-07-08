@@ -17,7 +17,20 @@ function Surface({w,h})
     const children = []
     const parents = []
 
-    var obj = {canvas, ctx, add, update, properties:{parents,w,h,offset}}
+    var obj = {canvas, ctx, add, update, beguinTransaction, endTransaction, properties:{parents,w,h,offset}}
+
+    var isOnTransaction = false
+
+    function beguinTransaction()
+    {
+        isOnTransaction = true;
+    }
+
+    function endTransaction()
+    {
+        isOnTransaction = false
+        update()
+    }
 
     function add(data)
     {
@@ -36,6 +49,8 @@ function Surface({w,h})
 
     function update()
     {
+        if(isOnTransaction) return
+        console.log("update")
         ctx.clearRect(0,0,w,h)
         for(const shape of children.sort((a,b)=> a.layer - b.layer))
         {
