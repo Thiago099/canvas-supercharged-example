@@ -12,7 +12,7 @@ npm install
 
 start the dev server with
 ```
-npm install
+npm run dev
 ```
 
 deploy for github pages with
