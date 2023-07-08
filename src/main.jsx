@@ -1,5 +1,5 @@
 import "./style.css"
-import { Surface } from "canvas-supercharged"
+import { Surface } from "super-canvas"
 
 const surface = Surface({w:800,h:600})
 
@@ -20,6 +20,7 @@ const circle = surface.add({
     w: 100,
     h: 100,
 })
+
 
 const square = surface.add({
     type: "rect",
