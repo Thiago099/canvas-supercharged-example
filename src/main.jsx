@@ -1,6 +1,14 @@
 import "./style.css"
 import { Surface } from "super-canvas"
 
+const tips = 
+<div>
+    <p>Hover over the shapes to highlight them</p>
+    <p>The red dot is the closest point in the edge of the shape to the mouse position </p>
+</div>
+tips.$parent(document.body)
+
+
 const surface = Surface({w:800,h:600})
 
 var centerX = 800 / 2;
