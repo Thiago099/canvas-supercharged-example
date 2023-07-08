@@ -20,5 +20,20 @@ function UseEllipse()
         return ((dx * dx) / (w * w) + (dy * dy) / (h * h) <= 1);
       }
 
-    return {draw, pointOnShape}
+      function getClosestPoint({px, py,x,y,w,h}) {
+        w/=2
+        h/=2
+        const centerX = x + w;
+        const centerY = y + h;
+        
+        const dx = px - centerX;
+        const dy = py - centerY;
+        const angle = Math.atan2(dy, dx);
+        const closestX = centerX + w * Math.cos(angle);
+        const closestY = centerY + h * Math.sin(angle);
+        
+        return { x: closestX, y: closestY };
+      }
+
+    return {draw, pointOnShape, getClosestPoint}
 }

@@ -12,8 +12,14 @@ function useLine()
       const point = closestPointOnLine(px,py,x1,y1,x2,y2)
         return  calculateDistance(point.x, point.y, px, py)< w/2
     }
+    
+    function getClosestPoint({px, py, x1, y1, x2, y2, w})
+    {
+      const point = closestPointOnLine(px,py,x1,y1,x2,y2)
+      return point
+    }
 
-    return { draw, pointOnShape }
+    return { draw, pointOnShape, getClosestPoint }
 }
 
 

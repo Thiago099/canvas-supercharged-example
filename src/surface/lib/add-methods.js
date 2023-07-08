@@ -23,8 +23,8 @@ function addSurface(children, parents,ctx,data, {properties:{w, h},update})
     const { surface:child, w:cw, h:ch, x, y } = data
     if(cw != null && ch != null)
     {
-        child.properties.offset.w = w / cw
-        child.properties.offset.h = h / ch
+        child.properties.offset.w = child.properties.w / cw
+        child.properties.offset.h = child.properties.h / ch
     }
     child.properties.offset.x = x
     child.properties.offset.y = y
@@ -34,8 +34,7 @@ function addSurface(children, parents,ctx,data, {properties:{w, h},update})
     {
         drawImage(ctx, data, parents)
     }
-    draw()
-    children.push(draw)
+    children.push({draw, layer:data.layer})
 }
 
 function addShape(children,ctx,data, update,offset)
@@ -50,13 +49,18 @@ function addShape(children,ctx,data, update,offset)
         entity = useDrawLine(ctx, data)
     }
 
-    children.push(entity.draw)
+    children.push({draw:entity.draw, layer:data.layer})
 
     function pointOnShape({x,y})
     {
         return entity.shape.pointOnShape({px:(x-offset.x)*offset.w,py:(y-offset.y)*offset.h,...data})
     }
+    function getClosestPoint({x,y})
+    {
+        return entity.shape.getClosestPoint({px:(x-offset.x)*offset.w,py:(y-offset.y)*offset.h,...data})
+    }
     data.pointOnShape = pointOnShape
+    data.getClosestPoint = getClosestPoint
 
     return Reactive(update, data)
 }
@@ -67,9 +71,17 @@ function useDrawShape(ctx, data)
     const shape = shapeDict[data.type]
     function draw()
     {
-        drawShape(ctx, data, shape.draw)
+        const dt = {...data}
+        if(dt.cx != null)
+        {
+            dt.x -= dt.cx
+        }
+        if(dt.cy != null)
+        {
+            dt.y -= dt.cy
+        }
+        drawShape(ctx, dt, shape.draw)
     }
-    draw()
     return {draw,shape}
 }
 
@@ -80,7 +92,5 @@ function useDrawLine(ctx, data)
     {
         drawLine(ctx, data, shape.draw)
     }
-    draw()
-
     return {draw,shape}
 }

@@ -32,6 +32,22 @@ const circle = surface.add({
     h: 100,
 })
 
+const helper = surface.add({
+    type: "ellipse",
+    backgroundColor: "#f00",
+    border: {
+        thickness: 1,
+        color: "black"
+    },
+    x: centerX,
+    y: centerY,
+    w: 10,
+    h: 10,
+    cx:5,
+    cy:5,
+    layer:1
+})
+
 const square = surface.add({
     type: "rect",
     backgroundColor: "#ffc",
@@ -111,6 +127,10 @@ document.addEventListener("mousemove",e=>{
     {
         curve.backgroundColor = "#ffc"
     }
+
+    const {x,y} = square.getClosestPoint({x:e.offsetX,y:e.offsetY})
+    helper.x = x
+    helper.y = y
     // line.x2 = e.offsetX
     // line.y2 = e.offsetY
 })

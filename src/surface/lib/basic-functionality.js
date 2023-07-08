@@ -40,10 +40,17 @@ function drawShape(ctx, data, callback)
 function drawLine(ctx, data, callback)
 {
     callback(ctx, data)
-    ctx.lineCap = "round";
+    let { cap } = data
     const { backgroundColor } = data
     const { border } = data 
     const { w } = data
+
+    if(cap == null)
+    {
+        cap = "round"
+    }
+
+    ctx.lineCap = cap;
 
     if(border != null)
     {
@@ -53,7 +60,6 @@ function drawLine(ctx, data, callback)
 
             ctx.lineWidth = thickness + w;
             ctx.strokeStyle = color;
-
             ctx.stroke()
         }
     }

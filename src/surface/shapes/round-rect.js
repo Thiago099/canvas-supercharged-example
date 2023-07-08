@@ -8,7 +8,8 @@ function useRect()
     w,
     h,
     border:{radius}},
-  ) {
+  )
+  {
     if(radius == 0 || radius == null)
     {
       ctx.beginPath();
@@ -30,8 +31,58 @@ function useRect()
     ctx.lineTo(x, y + radius.tl);
     ctx.quadraticCurveTo(x, y, x + radius.tl, y);
   }
+
   function pointOnShape({px, py,x,y,w,h}){
     return px >= x && px <= x + w && py >= y && py <= y + h
   }
-  return {draw, pointOnShape}
+
+  function getClosestPoint({px, py, x, y, w, h}) {
+    // Check if the point is inside the square
+    if (px >= x && px <= x + w && py >= y && py <= y + h) {
+      const leftDistance = px - x;
+      const rightDistance = x + w - px;
+      const topDistance = py - y;
+      const bottomDistance = y + h - py;
+  
+      const minDistance = Math.min(leftDistance, rightDistance, topDistance, bottomDistance);
+  
+      if (minDistance === leftDistance) {
+        return { x: x, y: py }; // Closest point on the left edge
+      } else if (minDistance === rightDistance) {
+        return { x: x + w, y: py }; // Closest point on the right edge
+      } else if (minDistance === topDistance) {
+        return { x: px, y: y }; // Closest point on the top edge
+      } else {
+        return { x: px, y: y + h }; // Closest point on the bottom edge
+      }
+    }
+  
+    // Find the closest x-coordinate on the edge
+    let closestX;
+    if (px < x) {
+      closestX = x; // Closest x-coordinate on the left edge
+    } else if (px > x + w) {
+      closestX = x + w; // Closest x-coordinate on the right edge
+    } else {
+      closestX = px; // Closest x-coordinate
+    }
+  
+    // Find the closest y-coordinate on the edge
+    let closestY;
+    if (py < y) {
+      closestY = y; // Closest y-coordinate on the top edge
+    } else if (py > y + h) {
+      closestY = y + h; // Closest y-coordinate on the bottom edge
+    } else {
+      closestY = py; // Closest y-coordinate
+    }
+  
+    return { x: closestX, y: closestY };
+  }
+  
+  
+  
+  return {draw, pointOnShape, getClosestPoint}
 }
+
+

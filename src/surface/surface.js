@@ -17,30 +17,36 @@ function Surface({w,h})
     const children = []
     const parents = []
 
-    var result = {canvas, ctx, add, update, properties:{parents,w,h,offset}}
+    var obj = {canvas, ctx, add, update, properties:{parents,w,h,offset}}
 
     function add(data)
     {
+        let result
+        if(!data.layer) data.layer = 0
         if(data.surface)
         {
-            return addSurface(children, parents, ctx, data, result)
+            result = addSurface(children, parents, ctx, data, obj)
+            update()
+            return result
         }
-        return addShape(children, ctx, data, update, offset)
+        result = addShape(children, ctx, data, update, offset)
+        update()
+        return result
     }
 
     function update()
     {
         ctx.clearRect(0,0,w,h)
-        for(const shape of children)
+        for(const shape of children.sort((a,b)=> a.layer - b.layer))
         {
-            shape()
+            shape.draw()
         }
         for(const surface of parents)
         {
             surface()
         }
     }
-    return result
+    return obj
 }
 
 
