@@ -21,8 +21,6 @@ const circle = surface.add({
     h: 100,
 })
 
-
-
 const square = surface.add({
     type: "rect",
     backgroundColor: "#ffc",
@@ -65,7 +63,6 @@ const shape = surface.add({
     ],
     w:10
 })
-
 
 const line = surface.add({
     type: "line",
@@ -115,7 +112,6 @@ const curve = surface.add({
     w:10
 })
 
-
 const circleHelper = useHelper(circle)
 const squareHelper = useHelper(square)
 const lineHelper = useHelper(line)
@@ -131,6 +127,7 @@ surface2.add({
     x:100,
     y:100,
 })
+
 surface2.canvas.$parent(document.body)
 
 surface2.canvas.addEventListener("mousemove",e=>{
@@ -176,7 +173,6 @@ function useHelper(element)
         helper.y = y
     }
 }
-
 
 function hoverColor(e, shape)
 {
