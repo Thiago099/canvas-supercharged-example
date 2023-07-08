@@ -5,9 +5,12 @@ import { addShape,addSurface } from "./lib/add-methods"
 export { Surface }
 
 
-function Surface({w,h})
+function Surface({w,h, canvas = null})
 {
-    const canvas = document.createElement("canvas")
+    if(canvas == null)
+    {
+        canvas = document.createElement("canvas")
+    }
     canvas.width = w
     canvas.height = h
     const ctx = canvas.getContext("2d");
@@ -50,7 +53,6 @@ function Surface({w,h})
     function update()
     {
         if(isOnTransaction) return
-        console.log("update")
         ctx.clearRect(0,0,w,h)
         for(const shape of children.sort((a,b)=> a.layer - b.layer))
         {

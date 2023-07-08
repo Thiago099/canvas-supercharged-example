@@ -160,11 +160,11 @@ function useHelper(element)
     }
 }
 
-const surface2 = Surface({w:800,h:600})
+const surface2 = Surface({w:800,h:600, canvas:<canvas></canvas>})
 
 surface2.add({
     surface,
     x:100,
     y:100,
 })
-document.body.appendChild(surface2.canvas)
+surface2.canvas.$parent(document.body)
