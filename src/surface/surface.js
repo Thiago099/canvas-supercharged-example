@@ -23,16 +23,22 @@ function Surface({w,h, canvas = null})
     var obj = {canvas, ctx, add, update, beguinTransaction, endTransaction, properties:{parents,w,h,offset}}
 
     var isOnTransaction = false
+    var doesTransactionDraw = false
 
     function beguinTransaction()
     {
         isOnTransaction = true;
+        doesTransactionDraw = false
     }
 
     function endTransaction()
     {
         isOnTransaction = false
-        update()
+        if(doesTransactionDraw)
+        {
+            update()
+        }
+        doesTransactionDraw = false
     }
 
     function add(data)
@@ -52,7 +58,10 @@ function Surface({w,h, canvas = null})
 
     function update()
     {
-        if(isOnTransaction) return
+        if(isOnTransaction){
+            doesTransactionDraw = true
+            return
+        }
         ctx.clearRect(0,0,w,h)
         for(const shape of children.sort((a,b)=> a.layer - b.layer))
         {
