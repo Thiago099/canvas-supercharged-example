@@ -44,7 +44,9 @@ function Surface({w,h, canvas = null})
     function add(data)
     {
         let result
+
         if(!data.layer) data.layer = 0
+
         if(data.surface)
         {
             result = addSurface(children, parents, ctx, data, obj)
