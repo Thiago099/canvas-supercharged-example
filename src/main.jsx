@@ -57,11 +57,21 @@ const line = surface.add({
         thickness: 1,
         color: "black",
     },
-    x1: 300,
-    y1: 100,
-    x2: 400,
-    y2: 200,
-    w:30
+    segments:[
+        {
+            x: 300,
+            y: 100,
+        },
+        {
+            x: 400,
+            y: 200,
+        },
+        {
+            x: 500,
+            y: 100,
+        }
+    ],
+    w:10
 })
 
 const curve = surface.add({
@@ -71,16 +81,30 @@ const curve = surface.add({
         thickness: 1,
         color: "black",
     },
-    x1: 20,
-    y1: 20,
-    x2: 20,
-    y2: 100,
-    x3: 200,
-    y3: 100,
-    x4: 200,
-    y4: 20,
+    segments:[
+        {
+            px: 20,
+            py: 20,
+            hx: 100,
+            hy: 20,
+        },
+        {
+            px: 100,
+            py: 100,
+            hx: 100,
+            hy: 100,
+        },
+        {
+            px: 200,
+            py: 200,
+            hx: 100,
+            hy: 200,
+        }
+    ],
     w:10
 })
+
+
 
 
 const circleHelper = useHelper(circle)
@@ -89,6 +113,15 @@ const lineHelper = useHelper(line)
 const curveHelper = useHelper(curve)
 
 surface.endTransaction()
+
+const surface2 = Surface({w:800,h:600, canvas:<canvas></canvas>})
+
+surface2.add({
+    surface,
+    x:100,
+    y:100,
+})
+surface2.canvas.$parent(document.body)
 
 document.addEventListener("mousemove",e=>{
 
@@ -160,11 +193,4 @@ function useHelper(element)
     }
 }
 
-const surface2 = Surface({w:800,h:600, canvas:<canvas></canvas>})
 
-surface2.add({
-    surface,
-    x:100,
-    y:100,
-})
-surface2.canvas.$parent(document.body)
