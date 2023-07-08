@@ -93,6 +93,7 @@ surface.endTransaction()
 document.addEventListener("mousemove",e=>{
 
     surface.beguinTransaction()
+
     if(circle.pointOnShape({x:e.offsetX,y:e.offsetY}))
     {
         circle.backgroundColor = "#cff"
@@ -132,10 +133,6 @@ document.addEventListener("mousemove",e=>{
     curveHelper(e)
 
     surface.endTransaction()
-
-
-    // line.x2 = e.offsetX
-    // line.y2 = e.offsetY
 })
 
 function useHelper(element)
