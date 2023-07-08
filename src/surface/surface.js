@@ -1,6 +1,3 @@
-import { UseEllipse } from "./shapes/ellipse"
-import { useRect } from "./shapes/round-rect"
-
 import { addShape,addSurface } from "./lib/add-methods"
 export { Surface }
 
