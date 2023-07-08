@@ -53,9 +53,9 @@ const line = surface.add({
         thickness: 1,
         color: "black",
     },
-    x1: 100,
+    x1: 300,
     y1: 100,
-    x2: 200,
+    x2: 400,
     y2: 200,
     w:30
 })
@@ -119,9 +119,9 @@ const surface2 = Surface({w:800,h:600})
 
 surface2.add({
     surface,
-    x:0,
-    y:0,
+    x:100,
+    y:100,
     w:800,
-    h:600
+    h:300
 })
 document.body.appendChild(surface2.canvas)

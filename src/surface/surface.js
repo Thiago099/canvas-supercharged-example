@@ -12,21 +12,20 @@ function Surface({w,h})
     canvas.height = h
     const ctx = canvas.getContext("2d");
 
-    const ratio = {w:1,h:1}
+    const offset = {w:1, h:1, x:0, y:0}
 
     const children = []
     const parents = []
 
-    var result = {canvas, ctx, add, update, properties:{parents,w,h,ratio}}
+    var result = {canvas, ctx, add, update, properties:{parents,w,h,offset}}
 
     function add(data)
     {
         if(data.surface)
         {
-
             return addSurface(children, parents, ctx, data, result)
         }
-        return addShape(children, ctx, data, update, ratio)
+        return addShape(children, ctx, data, update, offset)
     }
 
     function update()

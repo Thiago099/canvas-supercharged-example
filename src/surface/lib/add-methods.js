@@ -20,9 +20,11 @@ const lineDict = {
 
 function addSurface(children, parents,ctx,data, {properties:{w, h},update})
 {
-    const { surface:child, w:cw, h:ch } = data
-    child.properties.ratio.w = w / cw
-    child.properties.ratio.h = h / ch
+    const { surface:child, w:cw, h:ch, x, y } = data
+    child.properties.offset.w = w / cw
+    child.properties.offset.h = h / ch
+    child.properties.offset.x = x
+    child.properties.offset.y = y
     child.properties.parents.push(update)
 
     function draw()
@@ -33,7 +35,7 @@ function addSurface(children, parents,ctx,data, {properties:{w, h},update})
     children.push(draw)
 }
 
-function addShape(children,ctx,data, update,ratio)
+function addShape(children,ctx,data, update,offset)
 {
     let entity
     if(data.type in shapeDict)
@@ -49,7 +51,7 @@ function addShape(children,ctx,data, update,ratio)
 
     function pointOnShape({x,y})
     {
-        return entity.shape.pointOnShape({px:x*ratio.w,py:y*ratio.h,...data})
+        return entity.shape.pointOnShape({px:(x-offset.x)*offset.w,py:(y-offset.y)*offset.h,...data})
     }
     data.pointOnShape = pointOnShape
 
