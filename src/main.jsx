@@ -9,25 +9,25 @@ const tips =
 tips.$parent(document.body)
 
 
-const surface = Surface({w:800,h:600})
+const surface = Surface({w:900,h:600, canvas:<canvas></canvas>})
+surface.canvas.$parent(document.body)
 
 var centerX = 800 / 2;
 var centerY = 600 / 2;
 
+// const surface2 = Surface({w:800,h:600, canvas:<canvas></canvas>})
+
+// surface2.add({
+//     surface,
+//     x:100,
+//     y:100,
+// })
+
+// surface2.canvas.$parent(document.body)
+
 surface.beguinTransaction()
 
-const circle = surface.add({
-    type: "ellipse",
-    backgroundColor: "#BF4F51",
-    border: {
-        thickness: 3,
-        color: "black"
-    },
-    x: centerX,
-    y: centerY,
-    w: 100,
-    h: 100,
-})
+
 
 
 const square = surface.add({
@@ -38,8 +38,8 @@ const square = surface.add({
         color: "black",
         radius:10,
     },
-    x: centerX-120,
-    y: centerY,
+    x: 100,
+    y: 100,
     w: 100,
     h: 100,
 })
@@ -51,23 +51,25 @@ const shape = surface.add({
         thickness: 3,
         color: "black",
     },
+    x:300,
+    y:100,
     segments:[
         {
-            x: 300,
-            y: 20,
+            x: 0,
+            y: 0,
         },
         {
-            x: 400,
-            y: 100,
+            x: 100,
+            y: 80,
         },
         {
-            x: 500,
-            y: 20,
+            x: 200,
+            y: 0,
         }
         ,
         {
-            x: 400,
-            y: 50,
+            x: 100,
+            y: 30,
         }
     ],
 })
@@ -79,18 +81,20 @@ const line = surface.add({
         thickness: 3,
         color: "black",
     },
+    x:600,
+    y:100,
     segments:[
         {
-            x: 300,
-            y: 150,
+            x: 0,
+            y: 0,
         },
         {
-            x: 400,
-            y: 250,
+            x: 100,
+            y: 100,
         },
         {
-            x: 500,
-            y: 150,
+            x: 200,
+            y: 0,
         }
     ],
     cap: "square",
@@ -104,6 +108,8 @@ const curve = surface.add({
         thickness: 3,
         color: "black",
     },
+    x:100,
+    y:300,
     segments:[
         {
             x: 20,
@@ -126,18 +132,31 @@ const text = surface.add({
     // mandatory
     type: "text",
     text: "hello",  // text
-    x:100, // X coordinate
-    y:200, // Y coordinate
+    x:350, // X coordinate
+    y:320, // Y coordinate
     // optional
     font: "Arial", // font
     fontSize: 50, // font size (pt)
-    verticalAlign: "center", // top | center | bottom
-    horizontalAlign: "center",  // start | center | end
+    verticalAlign: "bottom", // top | center | bottom
+    horizontalAlign: "start",  // start | center | end
     backgroundColor: "#BF4F51",
     border: {
         thickness: 3,
         color: "black",
     },
+})
+
+const circle = surface.add({
+    type: "ellipse",
+    backgroundColor: "#BF4F51",
+    border: {
+        thickness: 3,
+        color: "black"
+    },
+    x: 650,
+    y: 300,
+    w: 100,
+    h: 100,
 })
 
 const circleHelper = useHelper(circle)
@@ -149,17 +168,9 @@ const textHelper = useHelper(text)
 
 surface.endTransaction()
 
-const surface2 = Surface({w:800,h:600, canvas:<canvas></canvas>})
 
-surface2.add({
-    surface,
-    x:100,
-    y:100,
-})
 
-surface2.canvas.$parent(document.body)
-
-surface2.canvas.addEventListener("mousemove",e=>{
+surface.canvas.addEventListener("mousemove",e=>{
 
     surface.beguinTransaction()
 
@@ -195,7 +206,6 @@ function useHelper(element)
     })
     return function(e)
     {
-        surface.beguinTransaction()
         helper.backgroundColor = "#9966CC"
         helper.border = {
             thickness: 2,
@@ -204,7 +214,6 @@ function useHelper(element)
         const {x,y} = element.getClosestPoint({x:e.offsetX,y:e.offsetY})
         helper.x = x
         helper.y = y
-        surface.endTransaction()
     }
 }
 
