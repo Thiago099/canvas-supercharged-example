@@ -212,7 +212,7 @@ function hoverColor(e, shape)
 {
     if(shape.pointOnShape({x:e.offsetX,y:e.offsetY}))
     {
-        shape.backgroundColor = "#E52B50"
+        shape.backgroundColor = "#78BE21"
     }
     else
     {
