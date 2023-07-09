@@ -25,7 +25,7 @@ var centerY = 600 / 2;
 
 // surface2.canvas.$parent(document.body)
 
-surface.beguinTransaction()
+surface.beginTransaction()
 
 
 
@@ -172,7 +172,7 @@ surface.endTransaction()
 
 surface.canvas.addEventListener("mousemove",e=>{
 
-    surface.beguinTransaction()
+    surface.beginTransaction()
 
     hoverColor(e,square)
     hoverColor(e,line)
