@@ -4,7 +4,7 @@ import { Surface } from "super-canvas"
 const tips = 
 <div>
     <p>Hover over the shapes to highlight them</p>
-    <p>The red dot is the closest point in the edge of the shape to the mouse position </p>
+    <p>The blue dot is the closest point in the edge of the shape to the mouse position </p>
 </div>
 tips.$parent(document.body)
 
@@ -206,7 +206,7 @@ function useHelper(element)
     })
     return function(e)
     {
-        helper.backgroundColor = "#9966CC"
+        helper.backgroundColor = "#59CBE8"
         helper.border = {
             thickness: 2,
             color: "black"
@@ -221,7 +221,7 @@ function hoverColor(e, shape)
 {
     if(shape.pointOnShape({x:e.offsetX,y:e.offsetY}))
     {
-        shape.backgroundColor = "#E52B50"
+        shape.backgroundColor = "#78BE21"
     }
     else
     {
