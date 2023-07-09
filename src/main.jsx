@@ -196,7 +196,7 @@ function useHelper(element)
     return function(e)
     {
         surface.beguinTransaction()
-        helper.backgroundColor = "#9966CC"
+        helper.backgroundColor = "#59CBE8"
         helper.border = {
             thickness: 2,
             color: "black"
