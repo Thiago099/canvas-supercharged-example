@@ -7,7 +7,7 @@ export default defineConfig({
     plugins:[
         MagicDomVitePlugin(),
     ],
-    base: '/super-canvas-example/', 
+    // base: '/super-canvas-example/', 
     resolve: {
         alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),

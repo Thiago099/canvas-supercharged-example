@@ -23,9 +23,9 @@ const circle = surface.add({
         thickness: 1,
         color: "#ccc"
     },
-    x: centerX,
+    x: centerX-100,
     y: centerY,
-    w: 100,
+    w: 200,
     h: 100,
 })
 
@@ -93,6 +93,7 @@ const line = surface.add({
             y: 100,
         }
     ],
+    cap: "square",
     w:10
 })
 
@@ -117,7 +118,26 @@ const curve = surface.add({
             hy: 100,
         }
     ],
+    cap: "square",
     w:10
+})
+
+const text = surface.add({
+    // mandatory
+    type: "text",
+    text: "hello",  // text
+    x:100, // X coordinate
+    y:200, // Y coordinate
+    // optional
+    font: "Arial", // font
+    fontSize: 50, // font size (pt)
+    verticalAlign: "center", // top | center | bottom
+    horizontalAlign: "center",  // start | center | end
+    backgroundColor: "#ffc",
+    border: {
+        thickness: 1,
+        color: "#ccc",
+    },
 })
 
 const circleHelper = useHelper(circle)
@@ -125,6 +145,7 @@ const squareHelper = useHelper(square)
 const lineHelper = useHelper(line)
 const curveHelper = useHelper(curve)
 const shapeHelper = useHelper(shape)
+const textHelper = useHelper(text)
 
 surface.endTransaction()
 
@@ -147,12 +168,14 @@ surface2.canvas.addEventListener("mousemove",e=>{
     hoverColor(e,curve)
     hoverColor(e,shape)
     hoverColor(e,circle)
+    hoverColor(e,text)
 
     circleHelper(e)
     squareHelper(e)
     lineHelper(e)
     curveHelper(e)
     shapeHelper(e)
+    textHelper(e)
 
     surface.endTransaction()
 })
