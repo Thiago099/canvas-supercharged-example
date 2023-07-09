@@ -21,11 +21,11 @@ const circle = surface.add({
     backgroundColor: "#ffc",
     border: {
         thickness: 1,
-        color: "#ccc"
+        color: "black"
     },
-    x: centerX-100,
+    x: centerX,
     y: centerY,
-    w: 200,
+    w: 100,
     h: 100,
 })
 
@@ -35,7 +35,7 @@ const square = surface.add({
     backgroundColor: "#ffc",
     border: {
         thickness: 1,
-        color: "#ccc",
+        color: "black",
         radius:10,
     },
     x: centerX-120,
@@ -49,7 +49,7 @@ const shape = surface.add({
     backgroundColor: "#ffc",
     border: {
         thickness: 1,
-        color: "#ccc",
+        color: "black",
     },
     segments:[
         {
@@ -77,7 +77,7 @@ const line = surface.add({
     backgroundColor: "#ffc",
     border: {
         thickness: 1,
-        color: "#ccc",
+        color: "black",
     },
     segments:[
         {
@@ -102,7 +102,7 @@ const curve = surface.add({
     backgroundColor: "#ffc",
     border: {
         thickness: 1,
-        color: "#ccc",
+        color: "black",
     },
     segments:[
         {
@@ -136,7 +136,7 @@ const text = surface.add({
     backgroundColor: "#ffc",
     border: {
         thickness: 1,
-        color: "#ccc",
+        color: "black",
     },
 })
 
@@ -199,7 +199,7 @@ function useHelper(element)
         helper.backgroundColor = "#f00"
         helper.border = {
             thickness: 1,
-            color: "#ccc"
+            color: "black"
         }
         const {x,y} = element.getClosestPoint({x:e.offsetX,y:e.offsetY})
         helper.x = x
