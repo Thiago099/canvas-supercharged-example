@@ -4,7 +4,7 @@ import { Surface } from "super-canvas"
 const tips = 
 <div>
     <p>Hover over the shapes to highlight them</p>
-    <p>The red dot is the closest point in the edge of the shape to the mouse position </p>
+    <p>The blue dot is the closest point in the edge of the shape to the mouse position </p>
 </div>
 tips.$parent(document.body)
 
