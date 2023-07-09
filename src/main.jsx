@@ -18,9 +18,9 @@ surface.beguinTransaction()
 
 const circle = surface.add({
     type: "ellipse",
-    backgroundColor: "#ffc",
+    backgroundColor: "#BF4F51",
     border: {
-        thickness: 1,
+        thickness: 3,
         color: "black"
     },
     x: centerX,
@@ -32,9 +32,9 @@ const circle = surface.add({
 
 const square = surface.add({
     type: "rect",
-    backgroundColor: "#ffc",
+    backgroundColor: "#BF4F51",
     border: {
-        thickness: 1,
+        thickness: 3,
         color: "black",
         radius:10,
     },
@@ -46,9 +46,9 @@ const square = surface.add({
 
 const shape = surface.add({
     type: "shape",
-    backgroundColor: "#ffc",
+    backgroundColor: "#BF4F51",
     border: {
-        thickness: 1,
+        thickness: 3,
         color: "black",
     },
     segments:[
@@ -74,23 +74,23 @@ const shape = surface.add({
 
 const line = surface.add({
     type: "line",
-    backgroundColor: "#ffc",
+    backgroundColor: "#BF4F51",
     border: {
-        thickness: 1,
+        thickness: 3,
         color: "black",
     },
     segments:[
         {
             x: 300,
-            y: 100,
+            y: 150,
         },
         {
             x: 400,
-            y: 200,
+            y: 250,
         },
         {
             x: 500,
-            y: 100,
+            y: 150,
         }
     ],
     cap: "square",
@@ -99,9 +99,9 @@ const line = surface.add({
 
 const curve = surface.add({
     type: "curve",
-    backgroundColor: "#ffc",
+    backgroundColor: "#BF4F51",
     border: {
-        thickness: 1,
+        thickness: 3,
         color: "black",
     },
     segments:[
@@ -133,9 +133,9 @@ const text = surface.add({
     fontSize: 50, // font size (pt)
     verticalAlign: "center", // top | center | bottom
     horizontalAlign: "center",  // start | center | end
-    backgroundColor: "#ffc",
+    backgroundColor: "#BF4F51",
     border: {
-        thickness: 1,
+        thickness: 3,
         color: "black",
     },
 })
@@ -196,9 +196,9 @@ function useHelper(element)
     return function(e)
     {
         surface.beguinTransaction()
-        helper.backgroundColor = "#f00"
+        helper.backgroundColor = "#9966CC"
         helper.border = {
-            thickness: 1,
+            thickness: 2,
             color: "black"
         }
         const {x,y} = element.getClosestPoint({x:e.offsetX,y:e.offsetY})
@@ -212,10 +212,10 @@ function hoverColor(e, shape)
 {
     if(shape.pointOnShape({x:e.offsetX,y:e.offsetY}))
     {
-        shape.backgroundColor = "#cff"
+        shape.backgroundColor = "#E52B50"
     }
     else
     {
-        shape.backgroundColor = "#ffc"
+        shape.backgroundColor = "#BF4F51"
     }
 }
