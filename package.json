@@ -13,6 +13,6 @@
   },
   "dependencies": {
     "magic-dom": "^3.0.22",
-    "super-canvas": "^1.0.32"
+    "super-canvas": "^1.0.33"
   }
 }
